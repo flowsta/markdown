@@ -1,0 +1,215 @@
+#+CATEGORY: manual, ddj, markdown, editor
+#+TAGS: html, marcado, marcas, lenguaje
+#+DESCRIPTION: Notas sobre el lenguaje de marcado Markdown
+#+TITLE: Get down, Markdown
+#+DATE: [2016-07-16 sáb 01:30]
+#+AUTHOR: Adolfo Antón Bravo
+#+EMAIL: adolflow@infotics.es
+#+OPTIONS: toc:nil num:nil todo:nil pri:nil tags:nil ^:nil TeX:nil
+
+#+LATEX_HEADER: \usepackage[english]{babel}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand{\contentsname}{{\'I}ndice}}
+#+OPTIONS: ^:nil num:nil
+
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: linear
+#+REVEAL_THEME: sky
+#+REVEAL_HLEVEL: 2
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Herramientas de Scraping de PDF y Web.">
+#+REVEAL_POSTAMBLE: <p> Creado por adolflow. </p>
+#+REVEAL_PLUGINS: (highlight notes)
+#+REVEAL_EXTRA_CSS: file:///home/flow/Documentos/software/reveal.js/css/reveal.css
+#+REVEAL_ROOT: file:///home/flow/Documentos/software/reveal.js/
+
+* Markdown
+
+Markdown se trata de dos cosas a la vez.
+
+- Lenguaje de marcado ligero para la Web sin la complejidad de HTML.
+- Software que convierte el texto escrito en Markdown en HTML.
+* Fácil de leer... y sobre todo de escribir
+
+- Busca ser fácil de escribir
+- Pero sobre todo *fácil de leer*
+
+* Sintaxis fácil
+- La sintaxis elegida indica lo que significa
+- Por ejemplo, los asteriscos para enfatizar una palabra o frase
+- Por ejemplo, los puntos para mostrar listados.
+
+Gruber confiesa que no creó Markdown para escribir de forma más fácil HTML porque ya le parecía muy fácil, sino que lo que quería era leerlo mejor.
+* Escribe una vez, publica cuantas quieras
+- Si el /HTML/ es el lenguaje para publicar documentos Web
+- /Markdown/ es un lenguaje para escribir y leer documentos.
+
+* Inspiración
+
+Se inspira en muchos conversores de texto a HTML como:
+- [[http://docutils.sourceforge.net/mirror/setext.html][Setext]]
+- [[http://www.aaronsw.com/2002/atx/intro][atx]]
+- [[https://txstyle.org/][Textile]]
+- [[http://docutils.sourceforge.net/rst.html][Rest]]
+- [[http://triptico.com/software/grutatxt.html][Grutatext]]
+- EtText
+- Pero sobre todo en las convenciones existentes para marcar mensajes de correo electrónico usando texto plano.
+
+* Nombre
+El nombre juega con el Markup de HTML, el lenguaje de marcado de hipertexto
+
+- Markup, marcas de HTML
+- Markdown, documentos simples
+
+* HTML
+
+- Allí donde la sintaxis de Markdown no llega se puede emplear HTML tal cual.
+- No hay que señalarlo de ninguna manera pero sí que se debe dejar una línea en blanco antes o después de =<div>=, =<table>=, =<pre>=, =<p>=, etc.
+- No se puede usar Markdown dentro de los citados elementos de bloque HTML, o al menos no con el resultado esperado.
+- Pero sí que se puede usar elementos en línea de HTML en un párrafo escrito en Markdown.
+
+* Tipos de elementos HTML
+Hay dos tipos fundamentales de elementos HTML, elementos de bloque y elementos en línea.
+- Los elementos en bloque son aquellos que forman un bloque de texto, como un párrafo, y son =div=, =table=, =p=, =pre=, =ul=, =li=, etc.
+- Mientras que los elementos en línea se sitúan dentro de los elementos de bloque, como son los enlaces =a=, las palabras señaladas =strong= o enfatizadas =em=, =span=, =cite=, =del=, etc.
+* Escape automático para elementos especiales
+En HTML hay dos caracteres que requieren tratarse especialmente:
+- =<=: se utilizan para iniciar etiquetas
+- =&=: denotan entidades HTML.
+
+Si quieres usarlos, debes ponerlos como entidades, =&lt;= y =&amp;=
+
+* Escape incluso en URLs
+Debes incluso escapar /et/ que aparezcan en el interior de direcciones URL. Por ejemplo, esta dirección:
+
+#+BEGIN_SRC html
+http://images.google.com/images?num=30&q=grace+hooper
+#+END_SRC
+
+Hay que codificarla como:
+#+BEGIN_SRC html
+http://images.google.com/images?num=30&amp;q=grace+hooper
+
+#+END_SRC
+
+Esto es algo que se olvida con facilidad y es el error más frecuente en los servicios de validación del marcado de sitios web.
+
+Cualquier /et/ que corresponda con una entidad HTML, permanecerá tal cual pero si se escribe sin ser parte de una entidad o sin la entidad /et/ en sí, se traducirá como =&amp;=, y lo mismo con =<=, que no lo traducirá si se pertenece a un elemento de HTML pero sí si está en una expresión tipo =4 < 5=, por lo que aparecería como =4 &lt; 5=
+* Compatibilidad
+- Markdown fue implementado originariamente en Perl por Gruber
+- Se ha sido traducido a multitud de lenguajes de programación, incluyendo PHP, Python, Ruby, Java y Common Lisp.
+
+* Párrafos y nuevas líneas
+
+- Son elementos de bloque en Markdown
+- Un párrafo es una o más líneas de texto separadas por una o más líneas de blanco.
+- No por muchas líneas de separación que pongamos vamos a conseguir más separación entre párrafos, es decir, no traduce cada línea de separación por una etiqueta =<br />=
+* Sintaxis
+- Encabezados
+- Énfasis
+- Enlaces
+
+* Encabezados
+- H1
+- H2
+- Hn
+
+* H1
+Para el encabezamiento principal podemos utilizar dos sintaxis:
+#+BEGIN_EXAMPLE
+Esto es un H1
+=============
+
+# Esto es un H1
+
+#+END_EXAMPLE
+
+* H2
+Para el H2 podemos utilizar dos formas también:
+
+#+BEGIN_EXAMPLE
+Esto es un H2
+-------------
+
+## Esto es un H2
+#+END_EXAMPLE
+
+* H3, H4, H5, H6
+
+Podemos continuar escribiendo almohadillas, según el número de ellas que escribamos, el número de =H= que sea:
+#+BEGIN_EXAMPLE
+### Esto es un H3
+#### Esto es un H4
+##### Esto es un H5
+#+END_EXAMPLE
+* Nota
+
+- Tanto para =\== como para =-= no es importante que sean el mismo número de caracteres que de la línea que precede.
+- Cuando eliges almohadillas, puedes poner a continuación del texto almohadillas, aunque no sirven de nada, puede ser útil.
+- No tiene importancia el número de almohadillas que pongas al final.
+
+#+BEGIN_EXAMPLE
+## Esto es un H2 ###
+#+END_EXAMPLE
+
+
+* Énfasis
+Se puede hacer de dos formas, con itálicas o negritas.
+- Para las /itálicas/, lo circunscribimos entre asteriscos o guiones bajos simples.
+- Para las *negritas*, lo rodearemos de guiones dobles o guiones bajos dobles:
+- Para *negritas* e /itálicas/, todo junto, lo pondremos entre tres asteriscos:
+#+BEGIN_EXAMPLE md
+*italic*   **bold**
+_italic_   __bold__
+***cursiva y negrita***
+#+END_EXAMPLE
+* Enlace
+Puedes escribirlo de tres maneras distintas:
+1. Enlace Markdown
+2. Enlace con marcas
+3. Enlaces con referencia o citas
+* Enlace Markdown
+#+BEGIN_EXAMPLE
+An [example](http://url.com/ "Title")
+#+END_EXAMPLE
+Donde =Title= es el atributo =title=
+* Enlace con marcas
+#+BEGIN_EXAMPLE
+<http://someurl>
+
+<somebbob@example.com>
+#+END_EXAMPLE
+* Enlaces de referencia o citas
+
+#+BEGIN_SRC md
+[URL de enlace uno][1] debajo de este párrafo, aparecerá debajo el enlace uno, y a continuación [el enlace dos][2].
+
+[1]: http://url
+[2]: http://otra.url "Con atributo title aquí dentro"
+
+#+END_SRC
+
+Que también se pueden hacer con un atajo:
+#+BEGIN_SRC md
+Quiero que esta referencia sea un [atajo][] que aparece a continuación del párrafo.
+
+[shortcut]: http://la.url.que.quiero
+#+END_SRC
+
+** Bloques de cita
+Usamos el carácter =>= para cada línea de texto que queremos 
+* GitHub
+Recientemente 
+* Licencia
+- Fue creado originalmente por John Gruber y Aaron Swartz para la Web
+- Se distribuye bajo licencia BSD
+* Disponibilidad
+Está disponible como plugin en diferentes sistemas de gestión de contenidos (CMS)
+* Bibliografía
+http://greg.schueler.us/doc/markdown.txt
+
+
+
