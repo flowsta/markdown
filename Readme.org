@@ -23,7 +23,7 @@
 #+REVEAL_PLUGINS: (highlight notes)
 #+REVEAL_EXTRA_CSS: file:///home/flow/Documentos/software/reveal.js/css/reveal.css
 #+REVEAL_ROOT: file:///home/flow/Documentos/software/reveal.js/
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+SETUPFILE: https://raw.githubusercontent.com/fniessen/org-html-themes/master/org/theme-readtheorg.setup
 * Markdown
 
 Markdown se trata de dos cosas a la vez.
