@@ -24,6 +24,7 @@
 #+REVEAL_EXTRA_CSS: file:///home/flow/Documentos/software/reveal.js/css/reveal.css
 #+REVEAL_ROOT: file:///home/flow/Documentos/software/reveal.js/
 #+SETUPFILE: https://raw.githubusercontent.com/fniessen/org-html-themes/master/org/theme-readtheorg.setup
+#+EXPORT_FILE_NAME: index
 * Markdown
 
 Markdown se trata de dos cosas a la vez.

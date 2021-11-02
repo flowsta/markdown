@@ -1,96 +1,288 @@
-<!DOCTYPE html>
-<html lang="en">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta charset="utf-8"/>
+<!-- 2021-11-02 Tue 12:28 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Get down, Markdown</title>
-<meta name="author" content="(Adolfo Antón Bravo)"/>
-<meta name="description" content="Notas sobre el lenguaje de marcado Markdown"/>
-<link rel="stylesheet" href="file:///home/flow/Documentos/software/reveal.js/css/reveal.css"/>
-<link rel="stylesheet" href="file:///home/flow/Documentos/software/reveal.js/css/theme/sky.css" id="theme"/>
-<link rel="stylesheet" href="file:///home/flow/Documentos/software/reveal.js/css/reveal.css"/>
-<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-<script>
-    if( window.location.search.match( /print-pdf/gi ) ) {
-        var link = document.createElement( 'link' );
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'file:///home/flow/Documentos/software/reveal.js/css/print/pdf.css';
-        document.getElementsByTagName( 'head' )[0].appendChild( link );
-    }
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Adolfo Antón Bravo" />
+<meta name="description" content="Notas sobre el lenguaje de marcado Markdown"
+ />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<meta name="description" content="Herramientas de Scraping de PDF y Web.">
 </head>
 <body>
-<div class="reveal">
-<div class="slides">
-<section id="sec-title-slide">
-<h1>Get down, Markdown</h1>
-<h2>Adolfo Antón Bravo</h2>
-<h2><a href="mailto:adolflow@infotics.es">adolflow@infotics.es</a></h2>
-<h2><span class="timestamp-wrapper"><span class="timestamp">[2016-07-16 sáb 01:30]</span></span></h2>
-</section>
-
-<section>
-<section id="slide-orgheadline1">
-<h2 id="orgheadline1">Markdown</h2>
+<div id="content">
+<h1 class="title">Get down, Markdown</h1>
+<div id="outline-container-orgad3a3b1" class="outline-2">
+<h2 id="orgad3a3b1">Markdown</h2>
+<div class="outline-text-2" id="text-orgad3a3b1">
 <p>
 Markdown se trata de dos cosas a la vez.
 </p>
 
-<ul>
+<ul class="org-ul">
 <li>Lenguaje de marcado ligero para la Web sin la complejidad de HTML.</li>
 <li>Software que convierte el texto escrito en Markdown en HTML.</li>
-
 </ul>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline2">
-<h2 id="orgheadline2">Fácil de leer&#x2026; y sobre todo de escribir</h2>
-<ul>
+</div>
+</div>
+<div id="outline-container-org0094a48" class="outline-2">
+<h2 id="org0094a48">Fácil de leer&#x2026; y sobre todo de escribir</h2>
+<div class="outline-text-2" id="text-org0094a48">
+<ul class="org-ul">
 <li>Busca ser fácil de escribir</li>
 <li>Pero sobre todo <b>fácil de leer</b></li>
-
 </ul>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline3">
-<h2 id="orgheadline3">Sintaxis fácil</h2>
-<ul>
+<div id="outline-container-org3540917" class="outline-2">
+<h2 id="org3540917">Sintaxis fácil</h2>
+<div class="outline-text-2" id="text-org3540917">
+<ul class="org-ul">
 <li>La sintaxis elegida indica lo que significa</li>
 <li>Por ejemplo, los asteriscos para enfatizar una palabra o frase</li>
 <li>Por ejemplo, los puntos para mostrar listados.</li>
-
 </ul>
 
-<blockquote nil>
+<blockquote>
 <p>
 Gruber confiesa que no creó Markdown para escribir de forma más fácil HTML porque ya le parecía muy fácil, sino que lo que quería era leerlo mejor.
 </p>
 </blockquote>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline4">
-<h2 id="orgheadline4">Escribe una vez, publica cuantas quieras</h2>
-<ul>
+</div>
+</div>
+<div id="outline-container-org45f80c7" class="outline-2">
+<h2 id="org45f80c7">Escribe una vez, publica cuantas quieras</h2>
+<div class="outline-text-2" id="text-org45f80c7">
+<ul class="org-ul">
 <li>Si el <i>HTML</i> es el lenguaje para publicar documentos Web</li>
 <li><i>Markdown</i> es un lenguaje para escribir y leer documentos.</li>
-
 </ul>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline5">
-<h2 id="orgheadline5">Inspiración</h2>
+<div id="outline-container-org5b0ac44" class="outline-2">
+<h2 id="org5b0ac44">Inspiración</h2>
+<div class="outline-text-2" id="text-org5b0ac44">
 <p>
 Se inspira en muchos conversores de texto a HTML como:
 </p>
-<ul>
+<ul class="org-ul">
 <li><a href="http://docutils.sourceforge.net/mirror/setext.html">Setext</a></li>
 <li><a href="http://www.aaronsw.com/2002/atx/intro">atx</a></li>
 <li><a href="https://txstyle.org/">Textile</a></li>
@@ -98,90 +290,84 @@ Se inspira en muchos conversores de texto a HTML como:
 <li><a href="http://triptico.com/software/grutatxt.html">Grutatext</a></li>
 <li>EtText</li>
 <li>Pero sobre todo en las convenciones existentes para marcar mensajes de correo electrónico usando texto plano.</li>
-
 </ul>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline6">
-<h2 id="orgheadline6">Nombre</h2>
+<div id="outline-container-orgb922286" class="outline-2">
+<h2 id="orgb922286">Nombre</h2>
+<div class="outline-text-2" id="text-orgb922286">
 <p>
 El nombre juega con el Markup de HTML, el lenguaje de marcado de hipertexto
 </p>
 
-<ul>
+<ul class="org-ul">
 <li>Markup, marcas de HTML</li>
 <li>Markdown, documentos simples</li>
-
 </ul>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline7">
-<h2 id="orgheadline7">HTML</h2>
-<ul>
+<div id="outline-container-org42b3294" class="outline-2">
+<h2 id="org42b3294">HTML</h2>
+<div class="outline-text-2" id="text-org42b3294">
+<ul class="org-ul">
 <li>Allí donde la sintaxis de Markdown no llega se puede emplear HTML tal cual.</li>
 <li>No hay que señalarlo de ninguna manera pero sí que se debe dejar una línea en blanco antes o después de <code>&lt;div&gt;</code>, <code>&lt;table&gt;</code>, <code>&lt;pre&gt;</code>, <code>&lt;p&gt;</code>, etc.</li>
 <li>No se puede usar Markdown dentro de los citados elementos de bloque HTML, o al menos no con el resultado esperado.</li>
 <li>Pero sí que se puede usar elementos en línea de HTML en un párrafo escrito en Markdown.</li>
-
 </ul>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline8">
-<h2 id="orgheadline8">Tipos de elementos HTML</h2>
+<div id="outline-container-orgd94723e" class="outline-2">
+<h2 id="orgd94723e">Tipos de elementos HTML</h2>
+<div class="outline-text-2" id="text-orgd94723e">
 <p>
 Hay dos tipos fundamentales de elementos HTML, elementos de bloque y elementos en línea.
 </p>
-<ul>
+<ul class="org-ul">
 <li>Los elementos en bloque son aquellos que forman un bloque de texto, como un párrafo, y son <code>div</code>, <code>table</code>, <code>p</code>, <code>pre</code>, <code>ul</code>, <code>li</code>, etc.</li>
 <li>Mientras que los elementos en línea se sitúan dentro de los elementos de bloque, como son los enlaces <code>a</code>, las palabras señaladas <code>strong</code> o enfatizadas <code>em</code>, <code>span</code>, <code>cite</code>, <code>del</code>, etc.</li>
-
 </ul>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline9">
-<h2 id="orgheadline9">Escape automático para elementos especiales</h2>
+</div>
+</div>
+<div id="outline-container-orgf5069f2" class="outline-2">
+<h2 id="orgf5069f2">Escape automático para elementos especiales</h2>
+<div class="outline-text-2" id="text-orgf5069f2">
 <p>
 En HTML hay dos caracteres que requieren tratarse especialmente:
 </p>
-<ul>
+<ul class="org-ul">
 <li><code>&lt;</code>: se utilizan para iniciar etiquetas</li>
 <li><code>&amp;</code>: denotan entidades HTML.</li>
-
 </ul>
 
 <p>
 Si quieres usarlos, debes ponerlos como entidades, <code>&amp;lt;</code> y <code>&amp;amp;</code>
 </p>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline10">
-<h2 id="orgheadline10">Escape incluso en URLs</h2>
+<div id="outline-container-org851b465" class="outline-2">
+<h2 id="org851b465">Escape incluso en URLs</h2>
+<div class="outline-text-2" id="text-org851b465">
 <p>
 Debes incluso escapar <i>et</i> que aparezcan en el interior de direcciones URL. Por ejemplo, esta dirección:
 </p>
 
 <div class="org-src-container">
-
-<pre><code class="html">http://images.google.com/images?num=30&amp;q=grace+hooper
-</code></pre>
+<pre class="src src-html">http://images.google.com/images?num=30<span style="color: #DFAF8F;">&amp;q</span>=grace+hooper
+</pre>
 </div>
 
 <p>
 Hay que codificarla como:
 </p>
 <div class="org-src-container">
+<pre class="src src-html">http://images.google.com/images?num=30<span style="color: #DFAF8F;">&amp;amp;</span>q=grace+hooper
 
-<pre><code class="html">http://images.google.com/images?num=30&amp;amp;q=grace+hooper
-</code></pre>
+</pre>
 </div>
 
 <p>
@@ -191,195 +377,190 @@ Esto es algo que se olvida con facilidad y es el error más frecuente en los ser
 <p>
 Cualquier <i>et</i> que corresponda con una entidad HTML, permanecerá tal cual pero si se escribe sin ser parte de una entidad o sin la entidad <i>et</i> en sí, se traducirá como <code>&amp;amp;</code>, y lo mismo con <code>&lt;</code>, que no lo traducirá si se pertenece a un elemento de HTML pero sí si está en una expresión tipo <code>4 &lt; 5</code>, por lo que aparecería como <code>4 &amp;lt; 5</code>
 </p>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline11">
-<h2 id="orgheadline11">Compatibilidad</h2>
-<ul>
+</div>
+</div>
+<div id="outline-container-orgfcc60f5" class="outline-2">
+<h2 id="orgfcc60f5">Compatibilidad</h2>
+<div class="outline-text-2" id="text-orgfcc60f5">
+<ul class="org-ul">
 <li>Markdown fue implementado originariamente en Perl por Tom Gruber</li>
 <li>Se ha sido traducido a multitud de lenguajes de programación, incluyendo PHP, Python, Ruby, Java y Common Lisp.</li>
-
 </ul>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline12">
-<h2 id="orgheadline12">Párrafos y nuevas líneas</h2>
-<ul>
+<div id="outline-container-org012e7ca" class="outline-2">
+<h2 id="org012e7ca">Párrafos y nuevas líneas</h2>
+<div class="outline-text-2" id="text-org012e7ca">
+<ul class="org-ul">
 <li>Son elementos de bloque en Markdown</li>
 <li>Un párrafo es una o más líneas de texto separadas por una o más líneas de blanco.</li>
 <li>No por muchas líneas de separación que pongamos vamos a conseguir más separación entre párrafos, es decir, no traduce cada línea de separación por una etiqueta <code>&lt;br /&gt;</code></li>
-
 </ul>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline13">
-<h2 id="orgheadline13">Sintaxis</h2>
-<ul>
+</div>
+</div>
+<div id="outline-container-org0818bad" class="outline-2">
+<h2 id="org0818bad">Sintaxis</h2>
+<div class="outline-text-2" id="text-org0818bad">
+<ul class="org-ul">
 <li>Encabezados</li>
 <li>Énfasis</li>
 <li>Enlaces</li>
-
 </ul>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline14">
-<h2 id="orgheadline14">Encabezados</h2>
-<ul>
+<div id="outline-container-org9c573ee" class="outline-2">
+<h2 id="org9c573ee">Encabezados</h2>
+<div class="outline-text-2" id="text-org9c573ee">
+<ul class="org-ul">
 <li>H1</li>
 <li>H2</li>
 <li>Hn</li>
-
 </ul>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline15">
-<h2 id="orgheadline15">H1</h2>
+<div id="outline-container-orgbd61d27" class="outline-2">
+<h2 id="orgbd61d27">H1</h2>
+<div class="outline-text-2" id="text-orgbd61d27">
 <p>
 Para el encabezamiento principal podemos utilizar dos sintaxis:
 </p>
-<pre class="example">
+<pre class="example" id="org6431524">
 Esto es un H1
 =============
 
 # Esto es un H1
-</pre>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline16">
-<h2 id="orgheadline16">H2</h2>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org24218fc" class="outline-2">
+<h2 id="org24218fc">H2</h2>
+<div class="outline-text-2" id="text-org24218fc">
 <p>
 Para el H2 podemos utilizar dos formas también:
 </p>
 
-<pre class="example">
+<pre class="example" id="org69c1126">
 Esto es un H2
 -------------
 
 ## Esto es un H2
 </pre>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline17">
-<h2 id="orgheadline17">H3, H4, H5, H6</h2>
+<div id="outline-container-orge2a9d71" class="outline-2">
+<h2 id="orge2a9d71">H3, H4, H5, H6</h2>
+<div class="outline-text-2" id="text-orge2a9d71">
 <p>
 Podemos continuar escribiendo almohadillas, según el número de ellas que escribamos, el número de <code>H</code> que sea:
 </p>
-<pre class="example">
+<pre class="example" id="org49c08e2">
 ### Esto es un H3
 #### Esto es un H4
 ##### Esto es un H5
 </pre>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline18">
-<h2 id="orgheadline18">Nota</h2>
-<ul>
+</div>
+</div>
+<div id="outline-container-org7409bb9" class="outline-2">
+<h2 id="org7409bb9">Nota</h2>
+<div class="outline-text-2" id="text-org7409bb9">
+<ul class="org-ul">
 <li>Tanto para <code>=</code> como para <code>-</code> no es importante que sean el mismo número de caracteres que de la línea que precede.</li>
 <li>Cuando eliges almohadillas, puedes poner a continuación del texto almohadillas, aunque no sirven de nada, puede ser útil.</li>
 <li>Es decir, no tiene importancia el número de almohadillas que pongas al final.</li>
-
 </ul>
 
-<pre class="example">
+<pre class="example" id="org1150b07">
 ## Esto es un H2 ###
 </pre>
+</div>
+</div>
 
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline19">
-<h2 id="orgheadline19">Énfasis</h2>
+<div id="outline-container-org5bcb6c0" class="outline-2">
+<h2 id="org5bcb6c0">Énfasis</h2>
+<div class="outline-text-2" id="text-org5bcb6c0">
 <p>
 Se puede hacer de dos formas, con itálicas o negritas.
 </p>
-<ul>
+<ul class="org-ul">
 <li>Para las <i>itálicas</i>, lo circunscribimos entre asteriscos o guiones bajos simples.</li>
 <li>Para las <b>negritas</b>, lo rodearemos de guiones dobles o guiones bajos dobles:</li>
 <li>Para <b>negritas</b> e <i>itálicas</i>, todo junto, lo pondremos entre tres asteriscos:</li>
-
 </ul>
-<pre class="example">
+<pre class="example" id="orgb6298d7">
 *italic*   **bold**
 _italic_   __bold__
 ***cursiva y negrita***
 </pre>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline20">
-<h2 id="orgheadline20">Enlace</h2>
+<div id="outline-container-org1f29fb7" class="outline-2">
+<h2 id="org1f29fb7">Enlace</h2>
+<div class="outline-text-2" id="text-org1f29fb7">
 <p>
 Puedes escribirlo de tres maneras distintas:
 </p>
-<ol>
+<ol class="org-ol">
 <li>Enlace Markdown</li>
 <li>Enlace con marcas</li>
 <li>Enlaces con referencia o citas</li>
-
 </ol>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline21">
-<h2 id="orgheadline21">Enlace Markdown</h2>
-<pre class="example">
+</div>
+</div>
+<div id="outline-container-org8a15b65" class="outline-2">
+<h2 id="org8a15b65">Enlace Markdown</h2>
+<div class="outline-text-2" id="text-org8a15b65">
+<pre class="example" id="org05f7c8c">
 Un [ejemplo](http://blog.infotics.es/ "Title")
 </pre>
 <p>
 Donde <code>Title</code> es el atributo <code>title</code> de HTML
 </p>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline22">
-<h2 id="orgheadline22">Enlace con marcas</h2>
-<pre class="example">
+</div>
+</div>
+<div id="outline-container-org53b66e7" class="outline-2">
+<h2 id="org53b66e7">Enlace con marcas</h2>
+<div class="outline-text-2" id="text-org53b66e7">
+<pre class="example" id="org77d4624">
 &lt;http://blog.infotics.es&gt;
 Escribe a:
 &lt;hola@infotics.es&gt;
 </pre>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline23">
-<h2 id="orgheadline23">Enlaces de referencia o citas</h2>
-<pre class="example">
+<div id="outline-container-org2bda84f" class="outline-2">
+<h2 id="org2bda84f">Enlaces de referencia o citas</h2>
+<div class="outline-text-2" id="text-org2bda84f">
+<pre class="example" id="org77a0006">
 [URL de enlace uno][1] debajo de este párrafo, aparecerá debajo el enlace uno, y a continuación [el enlace dos][2].
 
 [1]: http://url
 [2]: http://otra.url "Con atributo title aquí dentro"
+
 </pre>
 
 <p>
 Que también se pueden hacer con un atajo:
 </p>
-<pre class="example">
+<pre class="example" id="org833eb99">
 Quiero que esta referencia sea un [atajo][] que aparece a continuación del párrafo.
 
 [atajo]: http://la.url.que.quiero
 </pre>
+</div>
+</div>
 
-</section>
-</section>
-<section>
-<section id="slide-orgheadline24">
-<h2 id="orgheadline24">Bloques de cita</h2>
+<div id="outline-container-orgc2fd1a2" class="outline-2">
+<h2 id="orgc2fd1a2">Bloques de cita</h2>
+<div class="outline-text-2" id="text-orgc2fd1a2">
 <p>
 Usamos el carácter <code>&gt;</code> para cada línea de texto que queremos 
 </p>
@@ -387,78 +568,45 @@ Usamos el carácter <code>&gt;</code> para cada línea de texto que queremos
 <p>
 Por ejemplo:
 </p>
-<pre class="example">
+<pre class="example" id="org5ef100c">
 &gt; Esto es una cita
 &gt; Dime de qué careces
 &gt; Y te diré de qué presumes
+
 </pre>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline25">
-<h2 id="orgheadline25">Licencia</h2>
-<ul>
+</div>
+</div>
+<div id="outline-container-orge675973" class="outline-2">
+<h2 id="orge675973">Licencia</h2>
+<div class="outline-text-2" id="text-orge675973">
+<ul class="org-ul">
 <li>Fue creado originalmente por John Gruber y Aaron Swartz para la Web</li>
 <li>Se distribuye bajo licencia BSD</li>
-
 </ul>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline26">
-<h2 id="orgheadline26">Disponibilidad</h2>
+</div>
+</div>
+<div id="outline-container-org95b841c" class="outline-2">
+<h2 id="org95b841c">Disponibilidad</h2>
+<div class="outline-text-2" id="text-org95b841c">
 <p>
 Está disponible como plugin en diferentes sistemas de gestión de contenidos (CMS)
 </p>
-</section>
-</section>
-<section>
-<section id="slide-orgheadline27">
-<h2 id="orgheadline27">Bibliografía</h2>
+</div>
+</div>
+<div id="outline-container-org8879a82" class="outline-2">
+<h2 id="org8879a82">Bibliografía</h2>
+<div class="outline-text-2" id="text-org8879a82">
 <p>
 <a href="http://greg.schueler.us/doc/markdown.txt">http://greg.schueler.us/doc/markdown.txt</a>
 </p>
-</section>
-</section>
 </div>
 </div>
-<p> Creado por adolflow. </p>
-<script src="file:///home/flow/Documentos/software/reveal.js/lib/js/head.min.js"></script>
-<script src="file:///home/flow/Documentos/software/reveal.js/js/reveal.js"></script>
-
-<script>
-// Full list of configuration options available here:
-// https://github.com/hakimel/reveal.js#configuration
-Reveal.initialize({
-
-controls: true,
-progress: true,
-history: false,
-center: true,
-slideNumber: true,
-rollingLinks: true,
-keyboard: true,
-overview: true,
-width: 1200,
-height: 800,
-margin: 0.10,
-minScale: 0.50,
-maxScale: 2.50,
-
-theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
-transitionSpeed: 'default',
-multiplex: {
-    secret: '', // null if client
-    id: '', // id, obtained from socket.io server
-    url: '' // Location of socket.io server
-},
-
-// Optional libraries used to extend on reveal.js
-dependencies: [
- { src: 'file:///home/flow/Documentos/software/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
- { src: 'file:///home/flow/Documentos/software/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
-});
-</script>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2016-07-16 Sat 01:30</p>
+<p class="author">Author: Adolfo Antón Bravo</p>
+<p class="date">Created: 2021-11-02 Tue 12:28</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
 </body>
 </html>
